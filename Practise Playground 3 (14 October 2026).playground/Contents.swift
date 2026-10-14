@@ -163,4 +163,148 @@ print(getRandomNumber())
 
 
 // Extensions //  used for extending capabilites of apple standard library and your own code
+var quote = "    The truth is pure and never simple           "
+let trimmed = quote.trimmingCharacters(in: .whitespacesAndNewlines) // Bit lenghty
 
+extension String {
+    func trimmed() -> String {
+        self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    mutating func trim() {
+        self = self.trimmed()
+    }
+    
+    var lines: [String] {
+        self.components(separatedBy: .newlines)
+    }
+}
+
+let customTrimmed = quote.trim() // Simplified
+print(customTrimmed)
+
+let lyrics = """
+But I keep cruising
+Cant stop, wont stop moving
+Its like i got this music in my mind
+Saying its gonna be alright
+"""
+
+print(lyrics.lines.count)
+
+struct Hardcopy {
+    let title: String
+    let pageCount: Int
+    let readingHours: Int
+}
+
+extension Hardcopy {
+    init(title: String, pageCount: Int) {
+        self.title = title
+        self.pageCount = pageCount
+        self.readingHours = pageCount / 50
+    }
+}
+
+// To have both initialiser - memberwise initialiser and custom initialiser use extensions
+
+let lotr = Hardcopy(title: "1", pageCount: 4, readingHours: 1)
+
+
+// Extension Examples
+extension Double {
+    var isNegative: Bool {
+        return self < 0
+    }
+}
+
+extension Int {
+    var isEven: Bool {
+        return self.isMultiple(of: 2)
+    }
+}
+
+extension String {
+    mutating func append(_ other: String) {
+        self += other
+    }
+}
+
+extension Int {
+    func times(_ action: () -> Void) {
+        for _ in 0..<self {
+            action()
+        }
+    }
+}
+
+extension Array {
+    func summarize() {
+        print("The array has \(count) items. They are:")
+        for item in self {
+            print(item)
+        }
+    }
+}
+
+
+extension Int {
+    var isAnswerToLifeUniverseAndEverything: Bool {
+        let target = 42
+        return self == target
+    }
+}
+
+extension Bool {
+    func toggled() -> Bool {
+        if self == true {
+            return false
+        } else {
+            return true
+        }
+    }
+}
+
+
+extension Int {
+    func cubed() -> Int {
+        return self * self * self
+    }
+}
+
+
+extension Int {
+    func clamped(min: Int, max: Int) -> Int {
+        if (self > max) {
+            return max
+        } else if (self < min) {
+            return min
+        }
+        return self
+    }
+}
+
+extension String {
+    var isLong: Bool {
+        return self.count > 25
+    }
+}
+
+
+extension String {
+    func withPrefix(_ prefix: String) -> String {
+        if self.hasPrefix(prefix) { return self }
+        return "\(prefix)\(self)"
+    }
+}
+
+
+extension String {
+    func isUppercased() -> Bool {
+        return self == self.uppercased()
+    }
+}
+
+
+
+// Protocol Extension
