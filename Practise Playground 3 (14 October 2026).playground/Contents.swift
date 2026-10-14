@@ -307,4 +307,166 @@ extension String {
 
 
 
+
 // Protocol Extension
+// Array, Dictionary, Set - All conform to Collection Protocol
+// Protocol Oriented Programming (POP)
+
+extension Collection {
+    var isNotEmpty: Bool {
+        return self.isEmpty == false
+    }
+}
+
+let guests = ["Maria", "Leon", "Chris", "Jill"]
+
+if guests.isNotEmpty {
+    // do something
+    print("Guest count: \(guests.count)")
+}
+
+protocol Person {
+    var name: String { get }
+    func sayHello()
+}
+
+extension Person {
+    func sayHello() {
+        print("Say hello to \(name)")
+    }
+}
+
+struct Employee: Person {
+    let name: String
+}
+
+let taylor = Employee(name: "Taylor Swift")
+taylor.sayHello()
+
+// Protocol extensions are used everywhere in Swift
+// Swift is a "Protocol Oriented Programming"
+
+let numbers = [4, 8, 15, 16]
+let allEven = numbers.allSatisfy { $0.isMultiple(of: 2) }
+
+let numbers2 = Set([4, 8, 15, 16])
+let allEven2 = numbers2.allSatisfy { $0.isMultiple(of: 2) }
+
+let numbers3 = ["four": 4, "eight": 8, "fifteen": 15, "sixteen": 16]
+let allEven3 = numbers3.allSatisfy { $0.value.isMultiple(of: 2) }
+
+
+// Examples of Protocol Extensions
+protocol DogTrainer {
+    func train(dog: String)
+}
+
+extension DogTrainer {
+    func train(dog: String) {
+        print("We'll make \(dog) behave in no time!")
+    }
+}
+
+
+
+protocol Chef {
+    func getRecipes() -> [String]
+}
+
+extension Chef {
+    func getRecipes() -> [String] {
+        return ["Macaroni Cheese"]
+    }
+}
+
+
+
+
+protocol SmartPhone {
+    func makeCall(to name: String)
+}
+
+extension SmartPhone {
+    func makeCall(to name: String) {
+        print("Dialling \(name)...")
+    }
+}
+
+
+
+protocol Politician {
+    var isDirty: Bool { get set }
+    func takeBribe()
+}
+
+extension Politician {
+    func takeBribe() {
+        if isDirty {
+            print("Thank you very much!")
+        } else {
+            print("Someone call the police!")
+        }
+    }
+}
+
+
+
+protocol Anime {
+    var availableLanguages: [String] { get set }
+    func watch(in language: String)
+}
+
+extension Anime {
+    func watch(in language: String) {
+        if availableLanguages.contains(language) {
+            print("Now playing in \(language)")
+        } else {
+            print("Unrecognized language.")
+        }
+    }
+}
+
+
+
+
+protocol Hamster {
+    var name: String { get set }
+    func runInWheel(minutes: Int)
+}
+extension Hamster {
+    
+    func runInWheel(minutes: Int) {
+        print("\(name) is going for a run.")
+        for _ in 0..<minutes {
+            print("Whirr whirr whirr")
+        }
+    }
+}
+
+
+
+protocol Starship {
+    func transport(number: Int)
+}
+
+extension Starship {
+    func transport(number: Int) {
+        print("\(number) to beam up - energize!")
+    }
+}
+
+
+
+
+protocol Fencer {
+    func fenceFoil()
+}
+extension Fencer {
+    func fenceFoil() {
+        print("En garde!")
+    }
+}
+
+
+
+
